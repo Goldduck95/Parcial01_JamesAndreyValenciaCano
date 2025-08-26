@@ -1,0 +1,20 @@
+{% extends 'flights/base.html' %}
+{% block title %}Vuelo Registrado{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">¡Vuelo Registrado Exitosamente!</h4>
+                <p>El vuelo ha sido registrado correctamente en el sistema.</p>
+                <hr>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'flight_create' %}" class="btn btn-primary">Registrar Otro Vuelo</a>
+                    <a href="{% url 'flight_list' %}" class="btn btn-success">Ver Lista de Vuelos</a>
+                    <a href="{% url 'home' %}" class="btn btn-secondary">Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

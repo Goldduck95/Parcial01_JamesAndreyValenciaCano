@@ -1,0 +1,60 @@
+{% extends 'flights/base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block header_title %}{{subtitle}}{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Lista de Vuelos (Ordenados por precio)</h4>
+            </div>
+            <div class="card-body">
+                {% if flights %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for flight in flights %}
+                            <tr>
+                                <td>{{ flight.id }}</td>
+                                <td>
+                                    {% if flight.type == 'Internacional' %}
+                                        <span class="flight-internacional">{{ flight.name }}</span>
+                                    {% else %}
+                                        {{ flight.name }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ flight.type }}</td>
+                                <td>
+                                    {% if flight.type == 'Nacional' %}
+                                        <span class="flight-nacional">${{ flight.price }}</span>
+                                    {% else %}
+                                        ${{ flight.price }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    No hay vuelos registrados en el sistema.
+                </div>
+                {% endif %}
+                <div class="mt-3">
+                    <a href="{% url 'flight_create' %}" class="btn btn-primary">Registrar Nuevo Vuelo</a>
+                    <a href="{% url 'home' %}" class="btn btn-secondary">Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

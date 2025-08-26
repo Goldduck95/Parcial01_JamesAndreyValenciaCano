@@ -1,0 +1,21 @@
+{% extends 'flights/base.html' %}
+{% block title %}Inicio - Sistema de Vuelos{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Bienvenido al Sistema de Gestión de Vuelos</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Seleccione una de las siguientes opciones:</p>
+                <div class="d-grid gap-2">
+                    <a href="{% url 'flight_create' %}" class="btn btn-primary btn-lg">Registrar Vuelos</a>
+                    <a href="{% url 'flight_list' %}" class="btn btn-success btn-lg">Listar Vuelos</a>
+                    <a href="{% url 'flight_stats' %}" class="btn btn-info btn-lg">Estadísticas de Vuelos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

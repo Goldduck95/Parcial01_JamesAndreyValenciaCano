@@ -1,0 +1,70 @@
+{% extends 'flights/base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block header_title %}{{subtitle}}{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>Vuelos por Tipo</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <div class="bg-light p-3 rounded">
+                            <h2 class="text-primary">{{ nacional_count }}</h2>
+                            <p class="mb-0">Nacionales</p>
+                        </div>
+                    </div>
+                    <div class="col-6 text-center">
+                        <div class="bg-light p-3 rounded">
+                            <h2 class="text-success">{{ internacional_count }}</h2>
+                            <p class="mb-0">Internacionales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>Precio Promedio Nacional</h4>
+            </div>
+            <div class="card-body text-center">
+                {% if nacional_count > 0 %}
+                    <div class="bg-light p-4 rounded">
+                        <h2 class="text-info">${{ nacional_avg_price }}</h2>
+                        <p class="mb-0">Promedio vuelos nacionales</p>
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning">
+                        No hay vuelos nacionales registrados para calcular el promedio.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Resumen General</h4>
+            </div>
+            <div class="card-body">
+                <p><strong>Total de vuelos registrados:</strong> {{ nacional_count|add:internacional_count }}</p>
+                <p><strong>Distribución:</strong> {{ nacional_count }} Nacionales, {{ internacional_count }} Internacionales</p>
+                {% if nacional_count > 0 %}
+                    <p><strong>Precio promedio de vuelos nacionales:</strong> ${{ nacional_avg_price }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-3">
+    <a href="{% url 'flight_list' %}" class="btn btn-primary">Ver Lista de Vuelos</a>
+    <a href="{% url 'flight_create' %}" class="btn btn-success">Registrar Nuevo Vuelo</a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Volver al Inicio</a>
+</div>
+{% endblock %}
